@@ -1,22 +1,18 @@
 package org.xenon.silo.archive.documents.infrastructure;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.xenon.silo.archive.folders.infrastructure.FolderJpaEntity;
 import org.xenon.silo.archive.shared.persistence.BaseEntity;
-import org.xenon.silo.archive.users.infrastructure.UserJpaEntity;
+import org.xenon.silo.archive.users.infrastructure.persistence.UserJpaEntity;
 
 import java.time.Instant;
 
 @Entity
 @Table(name = "documents")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class DocumentJpaEntity extends BaseEntity {
     private String name;
 
@@ -44,4 +40,13 @@ public class DocumentJpaEntity extends BaseEntity {
 
     @Column(name = "deleted_at")
     private Instant deletedAt;
+
+    public DocumentJpaEntity(String name, String originalFileName, String storageKey, String mimeType, String fileSize, String description){
+        this.name = name;
+        this.originalFileName = originalFileName;
+        this.storageKey = storageKey;
+        this.mimeType = mimeType;
+        this.fileSize = fileSize;
+        this.description = description;
+    }
 }

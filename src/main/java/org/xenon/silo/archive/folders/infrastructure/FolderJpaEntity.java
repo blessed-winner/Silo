@@ -7,16 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.xenon.silo.archive.documents.infrastructure.DocumentJpaEntity;
 import org.xenon.silo.archive.shared.persistence.BaseEntity;
-import org.xenon.silo.archive.users.infrastructure.UserJpaEntity;
+import org.xenon.silo.archive.users.infrastructure.persistence.UserJpaEntity;
 
 import java.util.List;
 
 @Entity
 @Table(name = "folders")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class FolderJpaEntity extends BaseEntity {
     private String name;
 
@@ -33,4 +31,8 @@ public class FolderJpaEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "folder")
     private List<DocumentJpaEntity> documents;
+
+    public FolderJpaEntity(String name){
+        this.name = name;
+    }
 }
