@@ -1,0 +1,16 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: silo
+  datasource:
+    url: ${JDBC_DATABASE_URL:${DB_URL}}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: false
+  jwt:
+    secret: ${JWT_SECRET}
+    accessTokenExpiration: 600
+    refreshTokenExpiration: 604800
