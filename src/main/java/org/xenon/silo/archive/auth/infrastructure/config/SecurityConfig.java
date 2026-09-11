@@ -44,9 +44,9 @@ public class SecurityConfig {
                 .sessionManagement(c->c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        c -> c.requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-                                                            .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
-                                                            .requestMatchers(HttpMethod.POST, "/auth/refresh").permitAll()
+                        c -> c.requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
+                                                            .requestMatchers(HttpMethod.POST,"/api/auth/register").permitAll()
+                                                            .requestMatchers(HttpMethod.POST, "/api/auth/refresh").permitAll()
                                                             .anyRequest().authenticated()
                 ).addFilterBefore(appConfig.jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(c->{

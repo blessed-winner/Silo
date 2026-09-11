@@ -22,6 +22,17 @@ public class User {
         this.isEnabled = isEnabled;
     }
 
+    public static User create(String email, String firstName, String lastName, String passwordHash){
+      return new User(
+              UUID.randomUUID(),
+              email,
+              firstName,
+              lastName,
+              passwordHash,
+              true
+      );
+    }
+
     public void disable(){
         if(!isEnabled){
             return;

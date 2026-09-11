@@ -3,7 +3,7 @@ package org.xenon.silo.archive.auth.api;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record RegisterRequest (
+public record RegisterCommand (
     @NotBlank(message = "This field is required")
     String firstName,
 
