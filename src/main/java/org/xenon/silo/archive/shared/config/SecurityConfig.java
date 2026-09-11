@@ -17,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.xenon.silo.archive.shared.filters.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -51,7 +50,7 @@ public class SecurityConfig {
                 ).addFilterBefore(appConfig.jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(c->{
                     c.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
-                    c.accessDeniedHandler((request,response,accessDeninedException) -> {response.setStatus(HttpStatus.FORBIDDEN.value());});
+                    c.accessDeniedHandler((request,response,accessDeniedException) -> {response.setStatus(HttpStatus.FORBIDDEN.value());});
                 });
 
         return http.build();
