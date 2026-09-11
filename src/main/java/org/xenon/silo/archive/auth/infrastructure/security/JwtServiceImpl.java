@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.xenon.silo.archive.auth.domain.JwtService;
 import org.xenon.silo.archive.shared.config.JwtConfig;
 import org.xenon.silo.archive.users.domain.User;
 
@@ -12,11 +13,13 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class JwtService {
+public class JwtServiceImpl implements JwtService {
    private final JwtConfig jwtConfig;
 
+   @Override
    public String generateAccessToken(User user){return buildToken(user,jwtConfig.getAccessTokenExpiration());}
 
+    @Override
    public String generateRefreshToken(User user){return buildToken(user,jwtConfig.getRefreshTokenExpiration());}
 
    private String buildToken(User user, long expirationDate){
@@ -30,6 +33,7 @@ public class JwtService {
                 .compact();
    }
 
+   @Override
    public Claims extractClaims(String token){
        return Jwts.parser()
                .verifyWith(jwtConfig.getSecretKey())
@@ -38,6 +42,7 @@ public class JwtService {
                .getPayload();
    }
 
+   @Override
    public boolean isTokenValid(String token){
        try{
            extractClaims(token);
@@ -48,10 +53,12 @@ public class JwtService {
        }
    }
 
+   @Override
    public UUID extractUserId(String token){
        return UUID.fromString(extractClaims(token).getSubject());
    }
 
+   @Override
    public String extractUserEmail(String token){
        return extractClaims(token).get("email").toString();
    }

@@ -21,4 +21,24 @@ public class User {
         this.passwordHash = passwordHash;
         this.isEnabled = isEnabled;
     }
+
+    public void disable(){
+        if(!isEnabled){
+            return;
+        }
+        isEnabled = false;
+    }
+
+    public void changeFirstName(String firstName){
+        this.firstName = firstName;
+    }
+
+    public void changeLastName(String lastName){
+        this.lastName = lastName;
+    }
+
+    public void changeEmail(String email){
+        this.email = email;
+    }
+
 }

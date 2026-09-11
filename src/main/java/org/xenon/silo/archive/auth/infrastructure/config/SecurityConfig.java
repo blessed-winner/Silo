@@ -1,4 +1,4 @@
-package org.xenon.silo.archive.shared.config;
+package org.xenon.silo.archive.auth.infrastructure.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.xenon.silo.archive.shared.config.AppConfig;
 
 @Configuration
 @EnableWebSecurity
