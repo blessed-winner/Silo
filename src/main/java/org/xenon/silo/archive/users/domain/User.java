@@ -61,4 +61,12 @@ public class User {
         this.email = email;
     }
 
+    public void changePassword(String passwordHash){
+        if(passwordHash == null || passwordHash.isBlank()){
+            throw new IllegalArgumentException("Password cannot be null or blank");
+        }
+
+        this.passwordHash = passwordHash;
+    }
+
 }
