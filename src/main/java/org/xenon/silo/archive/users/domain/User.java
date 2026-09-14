@@ -41,14 +41,23 @@ public class User {
     }
 
     public void changeFirstName(String firstName){
+        if(firstName == null || firstName.isBlank()){
+            throw new IllegalArgumentException("First name cannot be null or blank");
+        }
         this.firstName = firstName;
     }
 
     public void changeLastName(String lastName){
+        if(lastName == null || lastName.isBlank()){
+            throw new IllegalArgumentException("Last name cannot be null or blank");
+        }
         this.lastName = lastName;
     }
 
     public void changeEmail(String email){
+        if(email == null || email.isBlank()){
+            throw new IllegalArgumentException("Email cannot be null or blank");
+        }
         this.email = email;
     }
 
