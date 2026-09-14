@@ -21,8 +21,13 @@ public class UpdateUserPasswordUseCase {
         UUID currentUser = getAuthenticatedUserId.getAuthenticatedUser();
         User user = userRepository.findById(currentUser).orElseThrow(()->new RuntimeException("User not found"));
 
-        if(passwordHasher.matches(command.oldPassword(),user.getPasswordHash())){
-            user.changePassword(command.newPassword());
+        if(!passwordHasher.matches(command.oldPassword(),user.getPasswordHash())){
+            throw new IllegalArgumentException("Current password is incorrect");
         }
+
+        String passwordHash = passwordHasher.hash(command.newPassword());
+        user.changePassword(passwordHash);
+
+        userRepository.save(user);
     }
 }
