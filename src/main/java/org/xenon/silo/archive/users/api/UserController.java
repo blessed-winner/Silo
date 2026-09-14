@@ -36,7 +36,7 @@ public class UserController {
 
     @DeleteMapping("/me")
     public ResponseEntity<Void> deleteUserProfile(){
-        deleteUserProfileUseCase.execute();;
+        deleteUserProfileUseCase.execute();
         return ResponseEntity.noContent().build();
     }
 }
