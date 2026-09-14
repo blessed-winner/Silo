@@ -15,11 +15,13 @@ public class Folder {
     private Folder parent;
     private List<Folder> children;
     private List<Document> documents;
+    boolean isActive;
 
-    public Folder(UUID id, String name, User owner, Folder parent){
+    public Folder(UUID id, String name, User owner, Folder parent, boolean isActive){
         this.id = id;
         this.name = name;
         this.owner = owner;
         this.parent = parent;
+        this.isActive = isActive;
     }
 }

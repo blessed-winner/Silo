@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 public class FolderJpaEntity extends BaseEntity {
     private String name;
+    private boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
