@@ -19,7 +19,7 @@ public class JpaFolderRepository implements FolderRepository {
 
     public JpaFolderRepository(FolderMapper folderMapper, SpringDataJpaRepository springDataJpaRepository){
         this.folderMapper = folderMapper;
-        this.springDataJpaRepository = springDataJpaRepository
+        this.springDataJpaRepository = springDataJpaRepository;
     }
 
     @Override
