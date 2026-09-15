@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface FolderRepository {
     Optional<Folder> findById(UUID id);
 
-    Optional<Folder> findbyName(String name);
+    Optional<Folder> findbyNameAndOwnerId(String name, UUID ownerId);
 
     Folder save(Folder folder);
 
