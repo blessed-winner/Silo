@@ -24,4 +24,14 @@ public class Folder {
         this.parent = parent;
         this.isActive = isActive;
     }
+
+    public static Folder create(String name, Folder parent, User owner){
+        return new Folder(
+                UUID.randomUUID(),
+                name,
+                owner,
+                parent,
+                true
+        );
+    }
 }

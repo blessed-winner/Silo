@@ -4,9 +4,6 @@ package org.xenon.silo.archive.folders.infrastructure;
 import org.springframework.stereotype.Repository;
 import org.xenon.silo.archive.folders.domain.Folder;
 import org.xenon.silo.archive.folders.domain.FolderRepository;
-
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,6 +22,11 @@ public class JpaFolderRepository implements FolderRepository {
     @Override
     public Optional<Folder> findById(UUID id){
        return springDataJpaRepository.findById(id).map(folderMapper::toDomain);
+    }
+
+    @Override
+    public Optional<Folder> findbyName(String name){
+        return springDataJpaRepository.findByName(name).map(folderMapper::toDomain);
     }
 
     @Override

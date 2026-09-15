@@ -8,6 +8,8 @@ import java.util.UUID;
 public interface FolderRepository {
     Optional<Folder> findById(UUID id);
 
+    Optional<Folder> findbyName(String name);
+
     Folder save(Folder folder);
 
     List<Folder> findAllByOwnerIdAndIsActiveTrue(UUID ownerId);
