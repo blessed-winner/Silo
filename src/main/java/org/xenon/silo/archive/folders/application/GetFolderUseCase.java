@@ -18,7 +18,14 @@ public class GetFolderUseCase {
     public FolderResponse execute(UUID id){
          UUID currentUser = getAuthenticatedUserId.getAuthenticatedUser();
          Folder folder = folderRepository.findById(id).orElseThrow(()->new RuntimeException("Folder not found"));
+         if(!folder.getOwner().getId().equals(currentUser)){
+             throw new RuntimeException("Current user is not the owner of this folder");
+         }
 
-
+         return new FolderResponse(
+                 folder.getId(),
+                 folder.getName(),
+                 folder.getParent().getName()
+         );
     }
 }
