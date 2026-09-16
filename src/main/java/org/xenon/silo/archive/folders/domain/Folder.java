@@ -34,4 +34,22 @@ public class Folder {
                 true
         );
     }
+
+    public void rename(String newName){
+        if(newName.equals(this.name)){
+            return;
+        }
+
+        if(newName.isBlank()){
+            return;
+        }
+        this.name = newName;
+    }
+
+    public void changeParent(Folder newParent){
+        if(newParent.id.equals(this.parent.id)){
+            return;
+        }
+        this.parent = newParent;
+    }
 }

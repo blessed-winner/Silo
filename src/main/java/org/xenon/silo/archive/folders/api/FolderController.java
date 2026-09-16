@@ -5,17 +5,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.xenon.silo.archive.folders.application.CreateFolderUseCase;
-import org.xenon.silo.archive.folders.application.ListUserFoldersUseCase;
+import org.xenon.silo.archive.folders.application.GetFolderUseCase;
+import org.xenon.silo.archive.folders.application.ListUserRootFoldersUseCase;
 import org.xenon.silo.archive.folders.domain.Folder;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/folders")
 @RequiredArgsConstructor
 public class FolderController {
     private final CreateFolderUseCase createFolderUseCase;
-    private final ListUserFoldersUseCase listUserFoldersUseCase;
+    private final ListUserRootFoldersUseCase listUserFoldersUseCase;
+    private final GetFolderUseCase getFolderUseCase;
 
     @PostMapping
     public ResponseEntity<Folder> createFolder(
@@ -30,5 +33,10 @@ public class FolderController {
     @GetMapping
     public ResponseEntity<List<FolderResponse>> listFolders(){
         return ResponseEntity.ok(listUserFoldersUseCase.execute());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FolderResponse> getFolder(@RequestParam UUID id){
+        return ResponseEntity.ok(getFolderUseCase.execute(id));
     }
 }

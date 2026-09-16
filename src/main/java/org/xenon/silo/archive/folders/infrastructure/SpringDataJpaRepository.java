@@ -8,6 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface SpringDataJpaRepository extends JpaRepository<FolderJpaEntity, UUID> {
+    Optional<FolderJpaEntity> findbyIdAndOwnerId(UUID id, UUID ownerId);
+
     Optional<FolderJpaEntity> findByNameAndOwnerId(String name,UUID ownerId);
 
     List<FolderJpaEntity> findAllByOwnerIdAndIsActiveTrue(UUID ownerId);

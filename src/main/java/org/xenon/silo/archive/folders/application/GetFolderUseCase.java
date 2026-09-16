@@ -24,8 +24,7 @@ public class GetFolderUseCase {
 
          return new FolderResponse(
                  folder.getId(),
-                 folder.getName(),
-                 folder.getParent().getName()
+                 folder.getName()
          );
     }
 }
