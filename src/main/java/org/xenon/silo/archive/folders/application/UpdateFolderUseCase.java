@@ -16,21 +16,25 @@ public class UpdateFolderUseCase {
     private final FolderRepository folderRepository;
     private final GetAuthenticatedUserId getAuthenticatedUserId;
 
-    public FolderResponse execute(UUID id, FolderUpdateCommand command){
+    public void execute(UUID id, FolderUpdateCommand command){
 
         UUID currentUser = getAuthenticatedUserId.getAuthenticatedUser();
-        Folder folder = folderRepository.findById(id).orElseThrow(()->new RuntimeException("Folder not found!"));
-
-        if(!folder.getOwner().getId().equals(currentUser)){
-            throw new RuntimeException("Folder does not belong to authenticated user!");
-        }
+        Folder folder = folderRepository.findByIdAndOwnerId(id, currentUser)
+                                        .orElseThrow(()->new RuntimeException("Folder not found!"));
 
         if(command.name() != null && !command.name().isBlank()){
             folder.rename(command.name());
+            folderRepository.save(folder);
         }
 
-        if(!command.parentId().isBlank()){
-            folderRepository.find
+        Folder newParent = folderRepository.findByIdAndOwnerId(command.parentId(), currentUser)
+                                           .orElseThrow(()->new RuntimeException("Folder not found!"));
+        if(newParent == null){
+            folder.changeParent(null);
+            folderRepository.save(folder);
+        } else {
+            folder.changeParent(newParent);
+            folderRepository.save(folder);
         }
     }
 }

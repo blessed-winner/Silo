@@ -7,6 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.xenon.silo.archive.folders.application.CreateFolderUseCase;
 import org.xenon.silo.archive.folders.application.GetFolderUseCase;
 import org.xenon.silo.archive.folders.application.ListUserRootFoldersUseCase;
+import org.xenon.silo.archive.folders.application.UpdateFolderUseCase;
 import org.xenon.silo.archive.folders.domain.Folder;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class FolderController {
     private final CreateFolderUseCase createFolderUseCase;
     private final ListUserRootFoldersUseCase listUserFoldersUseCase;
     private final GetFolderUseCase getFolderUseCase;
+    private final UpdateFolderUseCase updateFolderUseCase;
 
     @PostMapping
     public ResponseEntity<Folder> createFolder(
@@ -38,5 +40,14 @@ public class FolderController {
     @GetMapping("/{id}")
     public ResponseEntity<FolderResponse> getFolder(@RequestParam UUID id){
         return ResponseEntity.ok(getFolderUseCase.execute(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateFolder(
+            @RequestParam UUID id,
+            @RequestBody FolderUpdateCommand command
+    ){
+        updateFolderUseCase.execute(id, command);
+        return ResponseEntity.noContent().build();
     }
 }

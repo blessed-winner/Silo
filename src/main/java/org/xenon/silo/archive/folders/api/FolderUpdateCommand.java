@@ -1,10 +1,9 @@
 package org.xenon.silo.archive.folders.api;
 
 
-import lombok.Getter;
+import java.util.UUID;
 
-@Getter
-   public record FolderUpdateCommand(
+public record FolderUpdateCommand(
            String name,
-           String parentId
+           UUID parentId
    ){}
