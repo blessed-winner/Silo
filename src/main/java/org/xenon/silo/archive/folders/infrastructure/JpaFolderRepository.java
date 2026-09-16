@@ -25,7 +25,7 @@ public class JpaFolderRepository implements FolderRepository {
     }
 
     @Override
-    public Optional<Folder> findbyNameAndOwnerId(String name, UUID ownerId){
+    public Optional<Folder> findByNameAndOwnerId(String name, UUID ownerId){
         return springDataJpaRepository.findByNameAndOwnerId(name,ownerId).map(folderMapper::toDomain);
     }
 

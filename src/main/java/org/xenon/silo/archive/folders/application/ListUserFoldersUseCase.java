@@ -16,7 +16,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ListUserFoldersUseCase {
     private final FolderRepository folderRepository;
-    private final UserRepository userRepository;
     private final GetAuthenticatedUserId getAuthenticatedUserId;
 
     public List<FolderResponse> execute(){

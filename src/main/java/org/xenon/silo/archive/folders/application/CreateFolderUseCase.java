@@ -22,12 +22,14 @@ public class CreateFolderUseCase {
     public Folder execute(FolderCreateCommand command){
         UUID currentUser = getAuthenticatedUserId.getAuthenticatedUser();
         User authenticatedUser = userRepository.findById(currentUser).orElseThrow(()->new RuntimeException("User not found"));
-        Optional<Folder> parent = folderRepository.findbyNameAndOwnerId(command.parentName(),currentUser);
+        Optional<Folder> parent = folderRepository.findByNameAndOwnerId(command.parentName(),currentUser);
 
-        return Folder.create(
+        var newFolder = Folder.create(
                 command.name(),
                 parent.orElse(null),
                 authenticatedUser
         );
+
+        return folderRepository.save(newFolder);
     }
 }
