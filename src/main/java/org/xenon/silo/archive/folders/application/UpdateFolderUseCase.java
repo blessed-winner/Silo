@@ -24,17 +24,17 @@ public class UpdateFolderUseCase {
 
         if(command.name() != null && !command.name().isBlank()){
             folder.rename(command.name());
-            folderRepository.save(folder);
         }
 
-        Folder newParent = folderRepository.findByIdAndOwnerId(command.parentId(), currentUser)
-                                           .orElseThrow(()->new RuntimeException("Folder not found!"));
-        if(newParent == null){
+
+        if(command.parentId() == null){
             folder.changeParent(null);
-            folderRepository.save(folder);
         } else {
+            Folder newParent = folderRepository.findByIdAndOwnerId(command.parentId(), currentUser)
+                    .orElseThrow(()->new RuntimeException("Folder not found!"));
             folder.changeParent(newParent);
-            folderRepository.save(folder);
         }
+
+        folderRepository.save(folder);
     }
 }
