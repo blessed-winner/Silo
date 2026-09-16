@@ -1,8 +1,10 @@
 package org.xenon.silo.archive.folders.api;
 
-import java.util.UUID;
+import jakarta.validation.constraints.NotBlank;
 
 public record FolderCreateCommand(
         String parentName,
+
+        @NotBlank
         String name
 ){}
