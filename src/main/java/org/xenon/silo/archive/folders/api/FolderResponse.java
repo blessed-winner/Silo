@@ -1,7 +1,9 @@
 package org.xenon.silo.archive.folders.api;
 
-  public record FolderResponse(
-        String id,
+import java.util.UUID;
+
+public record FolderResponse(
+        UUID id,
         String name,
         String parentName
   ){}
