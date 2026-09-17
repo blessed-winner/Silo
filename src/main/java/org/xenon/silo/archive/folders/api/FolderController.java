@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.xenon.silo.archive.folders.application.CreateFolderUseCase;
-import org.xenon.silo.archive.folders.application.GetFolderUseCase;
-import org.xenon.silo.archive.folders.application.ListUserRootFoldersUseCase;
-import org.xenon.silo.archive.folders.application.UpdateFolderUseCase;
+import org.xenon.silo.archive.folders.application.*;
 import org.xenon.silo.archive.folders.domain.Folder;
 
 import java.util.List;
@@ -21,6 +18,7 @@ public class FolderController {
     private final ListUserRootFoldersUseCase listUserFoldersUseCase;
     private final GetFolderUseCase getFolderUseCase;
     private final UpdateFolderUseCase updateFolderUseCase;
+    private final DeleteFolderUseCase deleteFolderUseCase;
 
     @PostMapping
     public ResponseEntity<Folder> createFolder(
@@ -48,6 +46,14 @@ public class FolderController {
             @RequestBody FolderUpdateCommand command
     ){
         updateFolderUseCase.execute(id, command);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFolder(
+            @RequestParam UUID id
+    ){
+        deleteFolderUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 }

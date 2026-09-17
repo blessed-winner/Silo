@@ -15,7 +15,7 @@ public class Folder {
     private Folder parent;
     private List<Folder> children;
     private List<Document> documents;
-    boolean isActive;
+    private boolean isActive;
 
     public Folder(UUID id, String name, User owner, Folder parent, boolean isActive){
         this.id = id;
@@ -51,5 +51,12 @@ public class Folder {
             return;
         }
         this.parent = newParent;
+    }
+
+    public void deactivate(){
+        if(!this.isActive){
+            return;
+        }
+        this.isActive = false;
     }
 }

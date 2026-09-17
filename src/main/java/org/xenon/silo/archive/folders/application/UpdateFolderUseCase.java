@@ -2,7 +2,6 @@ package org.xenon.silo.archive.folders.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.xenon.silo.archive.folders.api.FolderResponse;
 import org.xenon.silo.archive.folders.api.FolderUpdateCommand;
 import org.xenon.silo.archive.folders.domain.Folder;
 import org.xenon.silo.archive.folders.domain.FolderRepository;
@@ -31,7 +30,7 @@ public class UpdateFolderUseCase {
             folder.changeParent(null);
         } else {
             Folder newParent = folderRepository.findByIdAndOwnerId(command.parentId(), currentUser)
-                    .orElseThrow(()->new RuntimeException("Folder not found!"));
+                    .orElseThrow(()-> new RuntimeException("Folder not found!"));
             folder.changeParent(newParent);
         }
 
