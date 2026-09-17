@@ -50,6 +50,10 @@ public class Folder {
         if(newParent.id.equals(this.parent.id)){
             return;
         }
+
+        if(newParent.id.equals(this.id)){
+            return;
+        }
         this.parent = newParent;
     }
 
