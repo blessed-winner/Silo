@@ -19,5 +19,6 @@ public class DeleteFolderUseCase {
         Folder toDelete = folderRepository.findByIdAndOwnerId(id, currentUser).orElseThrow(()->new RuntimeException("Folder not found"));
 
         toDelete.deactivate();
+        folderRepository.save(toDelete);
     }
 }
