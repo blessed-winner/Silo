@@ -19,6 +19,9 @@ public class DocumentJpaEntity extends BaseEntity {
     @Column(name = "original_file_name")
     private String originalFileName;
 
+    @Column(name = "display_name")
+    private String displayName;
+
     @Column(name = "storage_key")
     private String storageKey;
 

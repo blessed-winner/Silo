@@ -11,6 +11,7 @@ import java.util.UUID;
 public class Document {
     private UUID id;
     private String originalFileName;
+    private String displayName;
     private String storageKey;
     private String mimeType;
     private String fileSize;
@@ -22,6 +23,7 @@ public class Document {
     public Document(
             UUID id,
             String originalFileName,
+            String displayName,
             String storageKey,
             String mimeType,
             String fileSize,
@@ -32,6 +34,7 @@ public class Document {
     ){
         this.id = id;
         this.originalFileName = originalFileName;
+        this.displayName = displayName;
         this.storageKey = storageKey;
         this.mimeType = mimeType;
         this.fileSize = fileSize;
@@ -43,6 +46,7 @@ public class Document {
 
     public static Document create(
             String originalFileName,
+            String displayName,
             String storageKey,
             String mimeType,
             String fileSize,
@@ -53,6 +57,7 @@ public class Document {
         return new Document(
                 UUID.randomUUID(),
                 originalFileName,
+                displayName,
                 storageKey,
                 mimeType,
                 fileSize,
@@ -63,5 +68,7 @@ public class Document {
         );
     }
 
-    public void
+    public void rename(String newName){
+
+    }
 }
