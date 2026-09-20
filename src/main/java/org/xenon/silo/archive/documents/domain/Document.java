@@ -69,6 +69,10 @@ public class Document {
     }
 
     public void rename(String newName){
+         if(newName == null || newName.isBlank()){
+             throw new IllegalArgumentException("The new name cannot be null or blank");
+         }
+
 
     }
 }
