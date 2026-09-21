@@ -73,6 +73,10 @@ public class Document {
              throw new IllegalArgumentException("The new name cannot be null or blank");
          }
 
+         if(this.displayName.equals(newName)){
+             throw new IllegalArgumentException("The new name already exists");
+         }
 
+         this.displayName = newName;
     }
 }
