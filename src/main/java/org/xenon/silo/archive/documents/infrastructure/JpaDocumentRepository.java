@@ -1,5 +1,34 @@
 package org.xenon.silo.archive.documents.infrastructure;
 
 
-public class JpaDocumentRepository {
+import org.springframework.stereotype.Repository;
+import org.xenon.silo.archive.documents.domain.Document;
+import org.xenon.silo.archive.documents.domain.DocumentRepository;
+
+import java.util.Optional;
+import java.util.UUID;
+
+@Repository
+public class JpaDocumentRepository implements DocumentRepository {
+
+    private final DocumentMapper documentMapper;
+    private final SpringDataJpaRepository springDataJpaRepository;
+
+    public JpaDocumentRepository(DocumentMapper documentMapper, SpringDataJpaRepository springDataJpaRepository){
+        this.documentMapper = documentMapper;
+        this.springDataJpaRepository = springDataJpaRepository;
+    }
+
+    public Optional<Document> findByIdAndOwnerId(UUID id, UUID ownerId){
+        return springDataJpaRepository.findByIdAndOwnerId(id, ownerId).map(documentMapper::toDomain);
+    }
+
+    public Optional<Document> findByDisplayNameAndOwnerId(String name, UUID ownerId){
+        return springDataJpaRepository.findByDisplayNameAndOwnerId(name, ownerId).map(documentMapper::toDomain);
+    }
+
+    public Document save(Document document){
+        DocumentJpaEntity entity = documentMapper.toEntity(document);
+    }
+
 }
