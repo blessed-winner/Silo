@@ -19,16 +19,21 @@ public class JpaDocumentRepository implements DocumentRepository {
         this.springDataJpaRepository = springDataJpaRepository;
     }
 
+    @Override
     public Optional<Document> findByIdAndOwnerId(UUID id, UUID ownerId){
         return springDataJpaRepository.findByIdAndOwnerId(id, ownerId).map(documentMapper::toDomain);
     }
 
+    @Override
     public Optional<Document> findByDisplayNameAndOwnerId(String name, UUID ownerId){
         return springDataJpaRepository.findByDisplayNameAndOwnerId(name, ownerId).map(documentMapper::toDomain);
     }
 
+    @Override
     public Document save(Document document){
         DocumentJpaEntity entity = documentMapper.toEntity(document);
+        springDataJpaRepository.save(entity);
+        return documentMapper.toDomain(entity);
     }
 
 }
