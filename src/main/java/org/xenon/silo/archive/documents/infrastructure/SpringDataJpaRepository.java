@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface SpringDataJpaRepository extends JpaRepository<Document, UUID> {
+public interface SpringDataJpaRepository extends JpaRepository<DocumentJpaEntity, UUID> {
     Optional<DocumentJpaEntity> findByIdAndOwnerId(UUID id, UUID ownerId);
 
     Optional<DocumentJpaEntity> findByDisplayNameAndOwnerId(String displayName, UUID ownerId);
