@@ -19,6 +19,7 @@ public class FolderController {
     private final GetFolderUseCase getFolderUseCase;
     private final UpdateFolderUseCase updateFolderUseCase;
     private final DeleteFolderUseCase deleteFolderUseCase;
+    private final GetChildrenUseCase getChildrenUseCase;
 
     @PostMapping
     public ResponseEntity<Folder> createFolder(
@@ -33,6 +34,11 @@ public class FolderController {
     @GetMapping
     public ResponseEntity<List<FolderResponse>> listFolders(){
         return ResponseEntity.ok(listUserFoldersUseCase.execute());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FolderResponse>> listChildrenFolders(@RequestParam UUID parentId){
+        return ResponseEntity.ok(getChildrenUseCase.execute(parentId));
     }
 
     @GetMapping("/{id}")
