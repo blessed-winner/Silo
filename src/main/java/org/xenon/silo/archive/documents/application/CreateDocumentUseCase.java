@@ -12,6 +12,7 @@ public class CreateDocumentUseCase {
     private final DocumentRepository documentRepository;
     private final GetAuthenticatedUserId getAuthenticatedUserId;
 
+    //File storage to be implemented
     public DocumentResponse execute(){
 
     }
