@@ -1,7 +1,5 @@
 package org.xenon.silo.archive.documents.domain;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
