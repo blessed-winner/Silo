@@ -14,3 +14,5 @@ spring:
     secret: ${JWT_SECRET}
     accessTokenExpiration: 600
     refreshTokenExpiration: 604800
+  storage:
+    location: ./storage
