@@ -1,5 +1,6 @@
 package org.xenon.silo.archive.documents.infrastructure.storage;
 
+import org.springframework.stereotype.Component;
 import org.xenon.silo.archive.documents.domain.DocumentStorage;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+@Component
 public class LocalDocumentStorage implements DocumentStorage {
     private final Path rootLocation;
 
